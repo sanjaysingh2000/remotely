@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "429737202663",
+    "project_id": "mindful-87520",
+    "storage_bucket": "mindful-87520.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429737202663:android:ae589d886086ca5562e342",
+        "android_client_info": {
+          "package_name": "com.example.mindfull_momments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "429737202663-3btjmkq4r42n808nus6ofddcujtsiiln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mindfull_momments",
+            "certificate_hash": "e132f230fa8ee3ba708f81c97c9422b3232f7ab2"
+          }
+        },
+        {
+          "client_id": "429737202663-aggn01uj1ectau9t7vb6abnfc9vnj245.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxMgju7TzreFy9WFsHei_H7BwnrsaKLAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "429737202663-aggn01uj1ectau9t7vb6abnfc9vnj245.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429737202663:android:e35254141350c18862e342",
+        "android_client_info": {
+          "package_name": "com.example.remotely"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "429737202663-aggn01uj1ectau9t7vb6abnfc9vnj245.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxMgju7TzreFy9WFsHei_H7BwnrsaKLAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "429737202663-aggn01uj1ectau9t7vb6abnfc9vnj245.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
