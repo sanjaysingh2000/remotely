@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:remotely/features/home/data/models/jobs_response.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'remote_data_source.g.dart';
+part 'remote_job_data_source.g.dart';
 
 
 @RestApi()

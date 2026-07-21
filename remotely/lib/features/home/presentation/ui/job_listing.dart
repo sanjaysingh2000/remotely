@@ -1,8 +1,12 @@
+
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remotely/core/shimmers/job_listing_shimmers.dart';
 import 'package:remotely/core/theme/app_theme.dart';
+import 'package:remotely/core/widgets/custom_text_field.dart';
 import 'package:remotely/features/home/domain/entities/jobs_entities.dart';
 import 'package:remotely/features/home/presentation/bloc/event/job_event.dart';
 import 'package:remotely/features/home/presentation/bloc/job_bloc.dart';
@@ -16,10 +20,23 @@ class JobListing extends StatefulWidget {
 }
 
 class _JobListingState extends State<JobListing> {
+
+  Timer? _debounce;
+
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
     context.read<JobBloc>().add(JobEvent.fetchJobs());
+  });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -65,11 +82,27 @@ class _JobListingState extends State<JobListing> {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Text('Jobs for you', style: AppTextStyles.subHeading.copyWith(decoration: TextDecoration.underline),),
                             const SizedBox(height: 10),
+
+                          SizedBox(
+                            height: 45,
+                            child: CustomTextField(
+                              onchanged: (value) {
+                                 if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+  _debounce = Timer(const Duration(milliseconds: 500), () {
+    context.read<JobBloc>().add(JobEvent.searchJob(value.trim()));
+  });
+                              },
+                              
+                              controller: _searchController,hintText: 'Search', )),
+
+                            const SizedBox(height: 10),
+
                             Expanded(
                               child: RefreshIndicator(
                                 onRefresh: () async {
+                                  _searchController.clear();
                                   context
                                       .read<JobBloc>()
                                       .add(JobEvent.fetchJobs());       

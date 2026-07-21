@@ -7,5 +7,6 @@ part 'job_event.freezed.dart';
 class JobEvent with _$JobEvent {
   const factory JobEvent.fetchJobs() = _FetchJobs;
   const factory JobEvent.bookMarkJobs(JobEntity job) = _BookMarkJob;
+  const factory JobEvent.searchJob(String query) = _SearchJob; 
 }
   

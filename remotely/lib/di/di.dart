@@ -8,7 +8,7 @@ import 'package:remotely/features/bookmarkedJobs/domain/bookmark_repo.dart';
 import 'package:remotely/features/bookmarkedJobs/domain/usecases/bookmark_usecases.dart';
 import 'package:remotely/features/bookmarkedJobs/presenatation/bloc/bloc/bookmark_bloc.dart';
 import 'package:remotely/features/home/data/local_remote_job_datasource/local_remote_job_datasource.dart';
-import 'package:remotely/features/home/data/remote_data_source.dart/remote_data_source.dart';
+import 'package:remotely/features/home/data/remote_data_source.dart/remote_job_data_source.dart';
 import 'package:remotely/features/home/data/remote_job_impl.dart';
 import 'package:remotely/features/home/domain/remote_job_repo.dart';
 import 'package:remotely/features/home/domain/usecases/auth_use_cases.dart';
@@ -31,6 +31,7 @@ void configureDependencies() {
 
   getIt.registerLazySingleton<JobLocalDataSource>(() => JobLocalDataSource());
   getIt.registerLazySingleton<RemoteJobRepository>(() => RemoteJobImpl(remoteJobDataSource: getIt<RemoteJobDataSource>(),
+  bookmarkLocalDc: getIt<BookmarkLocalDc>(),
   localDataSource: getIt<JobLocalDataSource>()
   ));
 

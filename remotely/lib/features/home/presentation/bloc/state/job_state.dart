@@ -16,5 +16,4 @@ class JobState with _$JobState {
   const factory JobState.bookmarkJobSuccess() = _bookmarkJobSuccess;
     const factory JobState.bookmarkJobFailure() = _bookmarkJobFailure;
 
-
 }

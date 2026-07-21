@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'remote_data_source.dart';
+part of 'remote_job_data_source.dart';
 
 // dart format off
 

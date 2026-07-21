@@ -6,12 +6,13 @@ class CustomTextField extends StatelessWidget {
   final bool isObscure;
   final TextEditingController controller;
   final String? Function(String?)? validator;
-  const CustomTextField({super.key, required this.controller, this.validator, this.isObscure = false, this.hintText});
+  final Function(String)? onchanged;
+  const CustomTextField({super.key, required this.controller, this.validator, this.isObscure = false, this.hintText, this.onchanged});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-
+onChanged: onchanged,
       obscureText: isObscure,
       controller: controller,
       validator: validator,

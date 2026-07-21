@@ -6,8 +6,6 @@ import 'package:remotely/features/bookmarkedJobs/presenatation/bloc/bloc/bookmar
 import 'package:remotely/features/bookmarkedJobs/presenatation/bloc/event/bookmark_event.dart';
 import 'package:remotely/features/bookmarkedJobs/presenatation/screeen/bookmarked_jobs.dart';
 import 'package:remotely/features/home/domain/entities/jobs_entities.dart';
-import 'package:remotely/features/home/presentation/bloc/event/job_event.dart';
-import 'package:remotely/features/home/presentation/bloc/job_bloc.dart';
 import 'package:remotely/features/home/presentation/ui/job_details.dart';
 import 'package:remotely/features/home/presentation/ui/job_listing.dart';
 import 'package:remotely/routes/route_animation.dart';
@@ -41,7 +39,6 @@ static final SecureStorageHelper _secureStorageHelper = SecureStorageHelper.inst
       GoRoute(
         path: '/',
         pageBuilder: (context, state) {
-          
            return AppTransitions.buildTransitionPage(
       state: state,
       child: AuthScreen(),
