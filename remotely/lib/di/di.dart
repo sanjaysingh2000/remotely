@@ -2,6 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:remotely/core/network/dio_client.dart';
 import 'package:remotely/features/auth/presentation/bloc/bloc/auth_bloc.dart';
+import 'package:remotely/features/bookmarkedJobs/data/bookmarkRepoImpl.dart';
+import 'package:remotely/features/bookmarkedJobs/data/bookmark_local_dc/bookmark_local_dc.dart';
+import 'package:remotely/features/bookmarkedJobs/domain/bookmark_repo.dart';
+import 'package:remotely/features/bookmarkedJobs/domain/usecases/bookmark_usecases.dart';
+import 'package:remotely/features/bookmarkedJobs/presenatation/bloc/bloc/bookmark_bloc.dart';
 import 'package:remotely/features/home/data/local_remote_job_datasource/local_remote_job_datasource.dart';
 import 'package:remotely/features/home/data/remote_data_source.dart/remote_data_source.dart';
 import 'package:remotely/features/home/data/remote_job_impl.dart';
@@ -33,4 +38,20 @@ void configureDependencies() {
   getIt.registerLazySingleton<JobUseCases>(() => JobUseCases(remoteJobRepository: getIt<RemoteJobRepository>()
   ));
 
-getIt.registerFactory(() => JobBloc(jobUseCase: getIt<JobUseCases>()));}
+getIt.registerFactory(() => JobBloc(jobUseCase: getIt<JobUseCases>()));
+
+
+///bookmark
+getIt.registerLazySingleton<BookmarkLocalDc>(() =>BookmarkLocalDc() ,);
+
+getIt.registerLazySingleton<BookmarkRepo>(() => Bookmarkrepoimpl(getIt<BookmarkLocalDc>()));
+
+
+getIt.registerLazySingleton<BookmarkUsecases>(() =>BookmarkUsecases(bookmarkRepo: getIt()) ,);
+
+getIt.registerFactory(() => BookmarkBloc(getIt()));
+
+
+}
+
+

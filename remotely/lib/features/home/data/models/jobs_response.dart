@@ -51,7 +51,7 @@ class Job {
 
   final String? salary;
   final String? description;
-
+  final bool? isBookMarked;
   Job({
     required this.id,
      this.url,
@@ -64,7 +64,7 @@ class Job {
      this.publicationDate,
      this.candidateRequiredLocation,
      this.salary,
-     this.description,
+     this.description, this.isBookMarked = false,
   });
 
   factory Job.fromJson(Map<String, dynamic> json) =>

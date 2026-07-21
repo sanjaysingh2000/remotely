@@ -34,6 +34,7 @@ Job _$JobFromJson(Map<String, dynamic> json) => Job(
   candidateRequiredLocation: json['candidate_required_location'] as String?,
   salary: json['salary'] as String?,
   description: json['description'] as String?,
+  isBookMarked: json['isBookMarked'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
@@ -49,4 +50,5 @@ Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
   'candidate_required_location': instance.candidateRequiredLocation,
   'salary': instance.salary,
   'description': instance.description,
+  'isBookMarked': instance.isBookMarked,
 };

@@ -8,4 +8,8 @@ class JobUseCases {
   Future<List<JobEntity>> getRemoteJobs() async {
     return await remoteJobRepository.getRemoteJobs();
   }
+
+  Future<bool> bookMarkJob(JobEntity job) async{
+    return  remoteJobRepository.bookMarkJobs(job);
+  }
 }

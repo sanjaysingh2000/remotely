@@ -41,11 +41,7 @@ class _AuthScreenState extends State<AuthScreen> {
             state.whenOrNull(
               authenticated:() => context.go('/joblist'),
               error:(message) => 
-      
-           
-           
-
-           AppSnackbar.failure(message),
+               AppSnackbar.failure(message),
             );
             },
 
@@ -54,7 +50,7 @@ class _AuthScreenState extends State<AuthScreen> {
             toggleAuthPage: (isSignUp) => isSignUp ? SignupForm() : LoginForm(),
             initial: () =>  LoginForm() ,
             loading: () => Center(child: CircularProgressIndicator()),
-            authenticated: () => Center(child: Text('Authenticated')),
+            authenticated: () {},
             error: (message) => showLOgin ? LoginForm() : SignupForm(),
           ) ?? SizedBox.shrink();
           },

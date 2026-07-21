@@ -55,7 +55,7 @@ extension JobStatePatterns on JobState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Error value)?  error,TResult Function( _CachedJobs value)?  cachedJobs,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Error value)?  error,TResult Function( _CachedJobs value)?  cachedJobs,TResult Function( _bookmarkJobSuccess value)?  bookmarkJobSuccess,TResult Function( _bookmarkJobFailure value)?  bookmarkJobFailure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -63,7 +63,9 @@ return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
 return success(_that);case _Error() when error != null:
 return error(_that);case _CachedJobs() when cachedJobs != null:
-return cachedJobs(_that);case _:
+return cachedJobs(_that);case _bookmarkJobSuccess() when bookmarkJobSuccess != null:
+return bookmarkJobSuccess(_that);case _bookmarkJobFailure() when bookmarkJobFailure != null:
+return bookmarkJobFailure(_that);case _:
   return orElse();
 
 }
@@ -81,7 +83,7 @@ return cachedJobs(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Error value)  error,required TResult Function( _CachedJobs value)  cachedJobs,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Error value)  error,required TResult Function( _CachedJobs value)  cachedJobs,required TResult Function( _bookmarkJobSuccess value)  bookmarkJobSuccess,required TResult Function( _bookmarkJobFailure value)  bookmarkJobFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
@@ -89,7 +91,9 @@ return initial(_that);case _Loading():
 return loading(_that);case _Success():
 return success(_that);case _Error():
 return error(_that);case _CachedJobs():
-return cachedJobs(_that);case _:
+return cachedJobs(_that);case _bookmarkJobSuccess():
+return bookmarkJobSuccess(_that);case _bookmarkJobFailure():
+return bookmarkJobFailure(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -106,7 +110,7 @@ return cachedJobs(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Error value)?  error,TResult? Function( _CachedJobs value)?  cachedJobs,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Error value)?  error,TResult? Function( _CachedJobs value)?  cachedJobs,TResult? Function( _bookmarkJobSuccess value)?  bookmarkJobSuccess,TResult? Function( _bookmarkJobFailure value)?  bookmarkJobFailure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -114,7 +118,9 @@ return initial(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
 return success(_that);case _Error() when error != null:
 return error(_that);case _CachedJobs() when cachedJobs != null:
-return cachedJobs(_that);case _:
+return cachedJobs(_that);case _bookmarkJobSuccess() when bookmarkJobSuccess != null:
+return bookmarkJobSuccess(_that);case _bookmarkJobFailure() when bookmarkJobFailure != null:
+return bookmarkJobFailure(_that);case _:
   return null;
 
 }
@@ -131,14 +137,16 @@ return cachedJobs(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<JobEntity> jobs)?  success,TResult Function( String message)?  error,TResult Function( List<JobEntity> jobs,  String message)?  cachedJobs,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<JobEntity> jobs)?  success,TResult Function( String message)?  error,TResult Function( List<JobEntity> jobs,  String message)?  cachedJobs,TResult Function()?  bookmarkJobSuccess,TResult Function()?  bookmarkJobFailure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
 return success(_that.jobs);case _Error() when error != null:
 return error(_that.message);case _CachedJobs() when cachedJobs != null:
-return cachedJobs(_that.jobs,_that.message);case _:
+return cachedJobs(_that.jobs,_that.message);case _bookmarkJobSuccess() when bookmarkJobSuccess != null:
+return bookmarkJobSuccess();case _bookmarkJobFailure() when bookmarkJobFailure != null:
+return bookmarkJobFailure();case _:
   return orElse();
 
 }
@@ -156,14 +164,16 @@ return cachedJobs(_that.jobs,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<JobEntity> jobs)  success,required TResult Function( String message)  error,required TResult Function( List<JobEntity> jobs,  String message)  cachedJobs,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<JobEntity> jobs)  success,required TResult Function( String message)  error,required TResult Function( List<JobEntity> jobs,  String message)  cachedJobs,required TResult Function()  bookmarkJobSuccess,required TResult Function()  bookmarkJobFailure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Success():
 return success(_that.jobs);case _Error():
 return error(_that.message);case _CachedJobs():
-return cachedJobs(_that.jobs,_that.message);case _:
+return cachedJobs(_that.jobs,_that.message);case _bookmarkJobSuccess():
+return bookmarkJobSuccess();case _bookmarkJobFailure():
+return bookmarkJobFailure();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -180,14 +190,16 @@ return cachedJobs(_that.jobs,_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<JobEntity> jobs)?  success,TResult? Function( String message)?  error,TResult? Function( List<JobEntity> jobs,  String message)?  cachedJobs,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<JobEntity> jobs)?  success,TResult? Function( String message)?  error,TResult? Function( List<JobEntity> jobs,  String message)?  cachedJobs,TResult? Function()?  bookmarkJobSuccess,TResult? Function()?  bookmarkJobFailure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
 return success(_that.jobs);case _Error() when error != null:
 return error(_that.message);case _CachedJobs() when cachedJobs != null:
-return cachedJobs(_that.jobs,_that.message);case _:
+return cachedJobs(_that.jobs,_that.message);case _bookmarkJobSuccess() when bookmarkJobSuccess != null:
+return bookmarkJobSuccess();case _bookmarkJobFailure() when bookmarkJobFailure != null:
+return bookmarkJobFailure();case _:
   return null;
 
 }
@@ -470,5 +482,69 @@ as String,
 
 
 }
+
+/// @nodoc
+
+
+class _bookmarkJobSuccess implements JobState {
+  const _bookmarkJobSuccess();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _bookmarkJobSuccess);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'JobState.bookmarkJobSuccess()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _bookmarkJobFailure implements JobState {
+  const _bookmarkJobFailure();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _bookmarkJobFailure);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'JobState.bookmarkJobFailure()';
+}
+
+
+}
+
+
+
 
 // dart format on

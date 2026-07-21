@@ -12,7 +12,9 @@ extension JobMapper on Job {
       location: candidateRequiredLocation ?? '',
       jobType: jobType ?? '',
       tags: tags ?? [],
-      salary: ''
+      salary: salary??'',
+      description: description??''
+      
     );
   }
 }
@@ -20,5 +22,24 @@ extension JobMapper on Job {
 extension JobsResponseMapper on JobsResponse {
   List<JobEntity> toEntityList() {
     return jobs.map((e) => e.toEntity()).toList();
+  }
+}
+
+extension JobEntityMapper on JobEntity {
+  Job toJob() {
+    return Job(
+      id: id,
+      title: title,
+      companyName: companyName,
+      companyLogo: companyLogo,
+      candidateRequiredLocation: location,
+      jobType: jobType,
+      tags: tags,
+      salary: salary,
+      description: description,
+      url: '',
+      category: '',
+      publicationDate: '',
+    );
   }
 }

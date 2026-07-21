@@ -55,11 +55,12 @@ extension JobEventPatterns on JobEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FetchJobs value)?  fetchJobs,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FetchJobs value)?  fetchJobs,TResult Function( _BookMarkJob value)?  bookMarkJobs,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _FetchJobs() when fetchJobs != null:
-return fetchJobs(_that);case _:
+return fetchJobs(_that);case _BookMarkJob() when bookMarkJobs != null:
+return bookMarkJobs(_that);case _:
   return orElse();
 
 }
@@ -77,11 +78,12 @@ return fetchJobs(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FetchJobs value)  fetchJobs,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FetchJobs value)  fetchJobs,required TResult Function( _BookMarkJob value)  bookMarkJobs,}){
 final _that = this;
 switch (_that) {
 case _FetchJobs():
-return fetchJobs(_that);case _:
+return fetchJobs(_that);case _BookMarkJob():
+return bookMarkJobs(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +100,12 @@ return fetchJobs(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FetchJobs value)?  fetchJobs,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FetchJobs value)?  fetchJobs,TResult? Function( _BookMarkJob value)?  bookMarkJobs,}){
 final _that = this;
 switch (_that) {
 case _FetchJobs() when fetchJobs != null:
-return fetchJobs(_that);case _:
+return fetchJobs(_that);case _BookMarkJob() when bookMarkJobs != null:
+return bookMarkJobs(_that);case _:
   return null;
 
 }
@@ -119,10 +122,11 @@ return fetchJobs(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  fetchJobs,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  fetchJobs,TResult Function( JobEntity job)?  bookMarkJobs,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FetchJobs() when fetchJobs != null:
-return fetchJobs();case _:
+return fetchJobs();case _BookMarkJob() when bookMarkJobs != null:
+return bookMarkJobs(_that.job);case _:
   return orElse();
 
 }
@@ -140,10 +144,11 @@ return fetchJobs();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  fetchJobs,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  fetchJobs,required TResult Function( JobEntity job)  bookMarkJobs,}) {final _that = this;
 switch (_that) {
 case _FetchJobs():
-return fetchJobs();case _:
+return fetchJobs();case _BookMarkJob():
+return bookMarkJobs(_that.job);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +165,11 @@ return fetchJobs();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  fetchJobs,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  fetchJobs,TResult? Function( JobEntity job)?  bookMarkJobs,}) {final _that = this;
 switch (_that) {
 case _FetchJobs() when fetchJobs != null:
-return fetchJobs();case _:
+return fetchJobs();case _BookMarkJob() when bookMarkJobs != null:
+return bookMarkJobs(_that.job);case _:
   return null;
 
 }
@@ -202,5 +208,71 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class _BookMarkJob implements JobEvent {
+  const _BookMarkJob(this.job);
+  
+
+ final  JobEntity job;
+
+/// Create a copy of JobEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BookMarkJobCopyWith<_BookMarkJob> get copyWith => __$BookMarkJobCopyWithImpl<_BookMarkJob>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BookMarkJob&&(identical(other.job, job) || other.job == job));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,job);
+
+@override
+String toString() {
+  return 'JobEvent.bookMarkJobs(job: $job)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BookMarkJobCopyWith<$Res> implements $JobEventCopyWith<$Res> {
+  factory _$BookMarkJobCopyWith(_BookMarkJob value, $Res Function(_BookMarkJob) _then) = __$BookMarkJobCopyWithImpl;
+@useResult
+$Res call({
+ JobEntity job
+});
+
+
+
+
+}
+/// @nodoc
+class __$BookMarkJobCopyWithImpl<$Res>
+    implements _$BookMarkJobCopyWith<$Res> {
+  __$BookMarkJobCopyWithImpl(this._self, this._then);
+
+  final _BookMarkJob _self;
+  final $Res Function(_BookMarkJob) _then;
+
+/// Create a copy of JobEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? job = null,}) {
+  return _then(_BookMarkJob(
+null == job ? _self.job : job // ignore: cast_nullable_to_non_nullable
+as JobEntity,
+  ));
+}
+
+
+}
 
 // dart format on

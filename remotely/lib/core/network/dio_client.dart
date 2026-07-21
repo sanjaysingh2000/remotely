@@ -11,17 +11,17 @@ class DioClient {
       ),
     );
 
-    dio.interceptors.add(
-    PrettyDioLogger(
-    requestHeader: true,
-    requestBody: true,
-    responseHeader: false,
-    responseBody: true,
-    error: true,
-    compact: true,
-    maxWidth: 90,
-  ),
-);
+//     dio.interceptors.add(
+//     PrettyDioLogger(
+//     requestHeader: true,
+//     requestBody: true,
+//     responseHeader: false,
+//     responseBody: true,
+//     error: true,
+//     compact: true,
+//     maxWidth: 90,
+//   ),
+// );
 
     return dio;
   }

@@ -2,8 +2,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remotely/core/local_storage/secure_storage/secure_storage.dart';
 import 'package:remotely/features/auth/presentation/ui/auth_screen.dart';
+import 'package:remotely/features/bookmarkedJobs/presenatation/bloc/bloc/bookmark_bloc.dart';
+import 'package:remotely/features/bookmarkedJobs/presenatation/bloc/event/bookmark_event.dart';
+import 'package:remotely/features/bookmarkedJobs/presenatation/screeen/bookmarked_jobs.dart';
+import 'package:remotely/features/home/domain/entities/jobs_entities.dart';
 import 'package:remotely/features/home/presentation/bloc/event/job_event.dart';
 import 'package:remotely/features/home/presentation/bloc/job_bloc.dart';
+import 'package:remotely/features/home/presentation/ui/job_details.dart';
 import 'package:remotely/features/home/presentation/ui/job_listing.dart';
 import 'package:remotely/routes/route_animation.dart';
 
@@ -47,7 +52,6 @@ static final SecureStorageHelper _secureStorageHelper = SecureStorageHelper.inst
       GoRoute(
         path:'/joblist',
         pageBuilder: (context, state) {
-                    context.read<JobBloc>().add(JobEvent.fetchJobs());
 
         return AppTransitions.buildTransitionPage(
       state: state,
@@ -55,7 +59,25 @@ static final SecureStorageHelper _secureStorageHelper = SecureStorageHelper.inst
     );
 
         },
+      ),
+
+      GoRoute(path: '/jobDetails',
+      
+      pageBuilder: (context, state) {
+        return AppTransitions.buildTransitionPage(state: state, child: JobDetails(job: state.extra as JobEntity,));
+      },
+      ),
+
+      GoRoute(path: '/bookmarkedJobs',
+      
+      pageBuilder: (context, state) {
+
+        context.read<BookmarkBloc>().add(BookMarkEvent.fetchBookMarkedJobs());
+        return AppTransitions.buildTransitionPage(state: state, child: BookmarkedJobs());
+      },
       )
+
+
     ],
   );
 }

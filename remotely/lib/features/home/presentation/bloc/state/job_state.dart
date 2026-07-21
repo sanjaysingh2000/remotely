@@ -13,4 +13,8 @@ class JobState with _$JobState {
 
   const factory JobState.cachedJobs(List<JobEntity> jobs, String message) = _CachedJobs;
 
+  const factory JobState.bookmarkJobSuccess() = _bookmarkJobSuccess;
+    const factory JobState.bookmarkJobFailure() = _bookmarkJobFailure;
+
+
 }

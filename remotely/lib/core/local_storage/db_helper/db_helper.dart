@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
- final   String tableName = 'jobs';
+ final   String jobsTable = 'jobs';
+ final String bookMarkTable = 'bookMark';
 
 class DbHelper {
   DbHelper._();
@@ -19,8 +20,7 @@ class DbHelper {
     }else{
      myDb= await openDb();
      return myDb;
-    }
-     
+    }  
   }
   
   
@@ -31,17 +31,8 @@ Future<Database> openDb() async{
   String dbPath = join(appPath.path, 'remotely.db');
   return await openDatabase(dbPath, onCreate: (db, version) {
 
+    db.execute("create table $jobsTable(id integer primary key autoincrement,isBookMarked bool, title text, companyName text, location text, jobType text, salary text, description text)");
+    db.execute("create table $bookMarkTable(id integer primary key autoincrement,isBookMarked bool, title text, companyName text, location text, jobType text, salary text, description text)");
 
-  // final int id;
-  // final String title;
-  // final String companyName;
-  // final String companyLogo;
-  // final String location;
-  // final String jobType;
-  // final List<String> tags;
-  // final String salary;
-
-    db.execute("create table $tableName(id integer primary key autoincrement, title text, companyName text, location text, jobType text, salary text)");
-    
   },version: 1);
 }

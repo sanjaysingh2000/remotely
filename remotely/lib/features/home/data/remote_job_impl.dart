@@ -22,16 +22,12 @@ RemoteJobImpl({required this.remoteJobDataSource,required this._localDataSource}
 
   @override
   Future<List<JobEntity>> getRemoteJobs() async {
-
-
     try{
-
-
- final response = await remoteJobDataSource.getRemoteJobs();
+    final response = await remoteJobDataSource.getRemoteJobs();
 
     final jobs = response.data.jobs.map((job) => job.toEntity()).toList();
       await _localDataSource.clearJobs();
-          await _localDataSource.cacheJobs(response.data.jobs);
+           await _localDataSource.cacheJobs(response.data.jobs);
           return jobs;
 
 
@@ -43,6 +39,7 @@ RemoteJobImpl({required this.remoteJobDataSource,required this._localDataSource}
         e.type == DioExceptionType.sendTimeout;
 
     if (isConnectivityIssue) {
+      print('here-->>');
       final cached = await _localDataSource.getCachedJobs();
       if (cached.isNotEmpty) {
         return cached.map((job) => job.toEntity()).toList();
@@ -50,14 +47,18 @@ RemoteJobImpl({required this.remoteJobDataSource,required this._localDataSource}
       print('connectivity issue -->> $cached');
     }
     rethrow; 
-    }
-    
-    
+    }    
     catch(e){
       rethrow;
-    }
-
-   
+    }   
   }
+  
+  
+ @override
+Future<bool> bookMarkJobs(JobEntity job) async {
+  final jobModel = job.toJob();
+  return _localDataSource.cacheBookMarkJobs(jobModel);
+}
+  
 
 }
